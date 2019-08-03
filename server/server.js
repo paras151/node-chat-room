@@ -17,7 +17,18 @@ io.on('connection',(socket)=>{
     socket.on("disconnect",()=>{
         console.log("User was disconnected")
     })
+    socket.emit('newMessage',{
+        from: "John",
+        text: "See you then",
+        createAt:"123"
+    });
+
+    socket.on('createMessage',(newMessage)=>{
+        console.log('createMessage',newMessage);
+    })
+
 })
+
 
 var port = process.env.PORT||3000;
 server.listen(port,()=>{
